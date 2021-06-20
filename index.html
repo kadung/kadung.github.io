@@ -1,5 +1,10 @@
 <html>
 	<head>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
 		<style>
 			.icon {
 				position: absolute;
@@ -13,8 +18,6 @@
 				height: 10px;
 			}
 		</style>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>		
 	</head>
 
 	<body>
@@ -33,33 +36,31 @@
 	<script>
 		const fileInput = document.getElementById('my_file');
 		const fileReader = new FileReader();
-		fileReader.onload = (e) => {			
-			processData(fileReader.result);
+		fileReader.onload = (e) => {
+			// CSV
+			var data = $.csv.toObjects(fileReader.result);
+			
+			// Excel
+			// const workbook = XLSX.read(data, {type: 'binary'});
+        	// const firstSheet = workbook.SheetNames[0];
+			// const excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+			console.log(data);
+			processData(data);
 		}
 		fileInput.onchange = (e) => {
 			const file = event.target.files[0];
-			if (!file.name.endsWith(".xlsx")) {
-				alert("Please upload a valid xlsx Excel file.");
+			if (!file.name.endsWith(".csv")) {
+				alert("Please upload a valid csv file.");
 				return;
 			}
-			fileReader.readAsBinaryString(event.target.files[0]);
+			//fileReader.readAsBinaryString(event.target.files[0]);		// Excel
+			fileReader.readAsText(event.target.files[0]);				// CSV
 		}
-  		;
 
 		function processData(data) {
-			const workbook = XLSX.read(data, {
-            	type: 'binary'
-        	});
- 
-        	//Fetch the name of First Sheet.
-        	const firstSheet = workbook.SheetNames[0];
-
-			//Read all rows from First Sheet into an JSON array.
-			const excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
-			console.log(excelRows);
-
 			let tempHtml = "";
-			excelRows.forEach(row => {
+			data.forEach(row => {
 				if (row["Development Index"] == "-") return;
 				const tdpbPadding = caculatePadding(
 					row["Skill Scores - Tư duy phản biện ( Critical Thinking)"],
@@ -102,7 +103,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${tdpbPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Tư duy phản biện ( Critical Thinking)"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Tư duy phản biện ( Critical Thinking)"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -114,7 +115,7 @@
 								<span class="icon" style="padding-left: ${tdpbPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Tư duy phản biện ( Critical Thinking)"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Tư duy phản biện ( Critical Thinking)"])}</span>
 								</span>
 								<div style="font-size:14px;">Tư duy phản biện</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -127,7 +128,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${sahPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Sức ảnh hưởng"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Sức ảnh hưởng"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -139,7 +140,7 @@
 								<span class="icon" style="padding-left: ${sahPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Sức ảnh hưởng"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Sức ảnh hưởng"])}</span>
 								</span>
 								<div style="font-size:14px;">Sức ảnh hưởng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -151,7 +152,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${kntuPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Khả năng thích ứng"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Khả năng thích ứng"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -163,7 +164,7 @@
 								<span class="icon" style="padding-left: ${kntuPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Khả năng thích ứng"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Khả năng thích ứng"])}</span>
 								</span>
 								<div style="font-size:14px;">Khả năng thích ứng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -175,7 +176,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${lvtnPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Kỹ năng Làm việc theo nhóm"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Kỹ năng Làm việc theo nhóm"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -187,7 +188,7 @@
 								<span class="icon" style="padding-left: ${lvtnPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Kỹ năng Làm việc theo nhóm"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Làm việc theo nhóm"])}</span>
 								</span>
 								<div style="font-size:14px;">Kỹ năng làm việc theo nhóm</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -199,7 +200,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${gtPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Kỹ năng Giao tiếp"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Kỹ năng Giao tiếp"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -211,7 +212,7 @@
 								<span class="icon" style="padding-left: ${gtPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Kỹ năng Giao tiếp"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Giao tiếp"])}</span>
 								</span>
 								<div style="font-size:14px;">Kỹ năng giao tiếp</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -223,7 +224,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${kxPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Kỹ năng Khởi xướng"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Kỹ năng Khởi xướng"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -235,7 +236,7 @@
 								<span class="icon" style="padding-left: ${kxPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Kỹ năng Khởi xướng"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Khởi xướng"])}</span>
 								</span>
 								<div style="font-size:14px;">Kỹ năng khởi xướng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -247,7 +248,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${tcPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Kỹ năng tổ chức"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Kỹ năng tổ chức"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -259,7 +260,7 @@
 								<span class="icon" style="padding-left: ${tcPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Kỹ năng tổ chức"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng tổ chức"])}</span>
 								</span>
 								<div style="font-size:14px;">Kỹ năng tồ chức</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -271,7 +272,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${gqvdPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${row["Self-Assessment - Kỹ năng Giải quyết vấn đề"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Kỹ năng Giải quyết vấn đề"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -283,7 +284,7 @@
 								<span class="icon" style="padding-left: ${gqvdPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${row["Skill Scores - Kỹ năng Giải quyết vấn đề"]}</span>
+									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Giải quyết vấn đề"])}</span>
 								</span>
 								<div style="font-size:14px;">Kỹ năng giải quyết vấn đề</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -306,27 +307,5 @@
 			if (expectedScore) res.expectedPadding = expectedScore * 532 / 100 + 178;
 			return res;
 		}
-
-		// function processCSV(data) {
-			// ---------------------------------------------
-			// var allTextLines = allText.split(/\r\n|\n/);
-			// var headers = allTextLines[0].split(',');
-			// console.log(headers);
-			// var lines = [];
-
-			// for (var i=1; i<allTextLines.length; i++) {
-			// 	var data = allTextLines[i].split(',');
-			// 	console.log(data);
-			// 	var temp = {};
-			// 	for (var j=0; j<headers.length; j++) {
-			// 		if (j == 0) temp[headers[j]] = data[0] + data[1];
-        	//        	temp[headers[j]] = data[j+1];
-			// 	}
-			// 	lines.push(temp);
-        		
-    		// }
-			// console.log(lines);
-		// }
-
 	</script>
 </html>
