@@ -20,6 +20,10 @@
 			#finalResult {
 				padding-left: 60px;
 			}
+			.skillText {
+				font-size:21px;
+				font-family: Helveticish;
+			}
 		</style>
 	</head>
 
@@ -48,7 +52,6 @@
         	// const firstSheet = workbook.SheetNames[0];
 			// const excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
 
-			console.log(data);
 			processData(data);
 		}
 		fileInput.onchange = (e) => {
@@ -100,9 +103,9 @@
 
 				tempHtml += `
 					<div style="padding-bottom:100px;">
-						<div>Tên: ${row["Name"]}</div>
-						<span style="font-size:20px;">&#9632;</span>: Điểm thực tế &nbsp &nbsp &nbsp
-						<span style="font-size:15px;">&#11044;: Điểm tự đánh giá</span>
+						<div class="skillText">Tên: ${row["Name"]}</div>
+						<span class="skillText">&#9632;: Điểm thực tế</span>: &nbsp &nbsp &nbsp
+						<span class="skillText">&#11044;: Điểm tự đánh giá</span>
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${tdpbPadding.expectedPadding}px; ">
@@ -120,7 +123,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Tư duy phản biện ( Critical Thinking)"])}</span>
 								</span>
-								<div style="font-size:14px;">Tư duy phản biện</div>
+								<div class="skillText">Tư duy phản biện</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
@@ -145,7 +148,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Sức ảnh hưởng"])}</span>
 								</span>
-								<div style="font-size:14px;">Sức ảnh hưởng</div>
+								<div class="skillText">Sức ảnh hưởng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
@@ -169,7 +172,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Khả năng thích ứng"])}</span>
 								</span>
-								<div style="font-size:14px;">Khả năng thích ứng</div>
+								<div class="skillText">Khả năng thích ứng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
@@ -193,7 +196,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Làm việc theo nhóm"])}</span>
 								</span>
-								<div style="font-size:14px;">Kỹ năng làm việc theo nhóm</div>
+								<div class="skillText">Kỹ năng làm việc theo nhóm</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
@@ -217,7 +220,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Giao tiếp"])}</span>
 								</span>
-								<div style="font-size:14px;">Kỹ năng giao tiếp</div>
+								<div class="skillText">Kỹ năng giao tiếp</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
@@ -241,7 +244,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Khởi xướng"])}</span>
 								</span>
-								<div style="font-size:14px;">Kỹ năng khởi xướng</div>
+								<div class="skillText">Kỹ năng khởi xướng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
@@ -265,7 +268,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng tổ chức"])}</span>
 								</span>
-								<div style="font-size:14px;">Kỹ năng tồ chức</div>
+								<div class="skillText">Kỹ năng tồ chức</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
@@ -289,7 +292,7 @@
 									<br>
 									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Giải quyết vấn đề"])}</span>
 								</span>
-								<div style="font-size:14px;">Kỹ năng giải quyết vấn đề</div>
+								<div class="skillText">Kỹ năng giải quyết vấn đề</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
 								<div style="background-color: rgb(207, 153, 4); margin-top: 5px;"></div>
 								<div style="background-color: green; margin-top: 5px;"></div>  
