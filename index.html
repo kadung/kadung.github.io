@@ -69,35 +69,35 @@
 			data.forEach(row => {
 				if (row["Development Index"] == "-") return;
 				const tdpbPadding = caculatePadding(
-					row["Skill Scores - Tư duy phản biện ( Critical Thinking)"],
+					parseInt(row["Skill Scores(%) - Tư duy phản biện ( Critical Thinking)"].replace('%','')),
 					row["Self-Assessment - Tư duy phản biện ( Critical Thinking)"],
 				);
 				const sahPadding = caculatePadding(
-					row["Skill Scores - Sức ảnh hưởng"],
+					parseInt(row["Skill Scores(%) - Sức ảnh hưởng"].replace('%','')),
 					row["Self-Assessment - Sức ảnh hưởng"],
 				);
 				const kntuPadding = caculatePadding(
-					row["Skill Scores - Khả năng thích ứng"],
+					parseInt(row["Skill Scores(%) - Khả năng thích ứng"].replace('%','')),
 					row["Self-Assessment - Khả năng thích ứng"],
 				);
 				const lvtnPadding = caculatePadding(
-					row["Skill Scores - Kỹ năng Làm việc theo nhóm"],
+					parseInt(row["Skill Scores(%) - Kỹ năng Làm việc theo nhóm"].replace('%','')),
 					row["Self-Assessment - Kỹ năng Làm việc theo nhóm"],
 				);
 				const gtPadding = caculatePadding(
-					row["Skill Scores - Kỹ năng Giao tiếp"],
+					parseInt(row["Skill Scores(%) - Kỹ năng Giao tiếp"].replace('%','')),
 					row["Self-Assessment - Kỹ năng Giao tiếp"],
 				);
 				const kxPadding = caculatePadding(
-					row["Skill Scores - Kỹ năng Khởi xướng"],
+					parseInt(row["Skill Scores(%) - Kỹ năng Khởi xướng"].replace('%','')),
 					row["Self-Assessment - Kỹ năng Khởi xướng"],
 				);
 				const tcPadding = caculatePadding(
-					row["Skill Scores - Kỹ năng tổ chức"],
+					parseInt(row["Skill Scores(%) - Kỹ năng tổ chức"].replace('%','')),
 					row["Self-Assessment - Kỹ năng tổ chức"],
 				);
 				const gqvdPadding = caculatePadding(
-					row["Skill Scores - Kỹ năng Giải quyết vấn đề"],
+					parseInt(row["Skill Scores(%) - Kỹ năng Giải quyết vấn đề"].replace('%','')),
 					row["Self-Assessment - Kỹ năng Giải quyết vấn đề"],
 				);
 
@@ -121,7 +121,7 @@
 								<span class="icon" style="padding-left: ${tdpbPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Tư duy phản biện ( Critical Thinking)"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Tư duy phản biện ( Critical Thinking)"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Tư duy phản biện</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -146,7 +146,7 @@
 								<span class="icon" style="padding-left: ${sahPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Sức ảnh hưởng"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Sức ảnh hưởng"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Sức ảnh hưởng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -170,7 +170,7 @@
 								<span class="icon" style="padding-left: ${kntuPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Khả năng thích ứng"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Khả năng thích ứng"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Khả năng thích ứng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -194,7 +194,7 @@
 								<span class="icon" style="padding-left: ${lvtnPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Làm việc theo nhóm"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Kỹ năng Làm việc theo nhóm"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Kỹ năng làm việc theo nhóm</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -218,7 +218,7 @@
 								<span class="icon" style="padding-left: ${gtPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Giao tiếp"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Kỹ năng Giao tiếp"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Kỹ năng giao tiếp</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -242,7 +242,7 @@
 								<span class="icon" style="padding-left: ${kxPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Khởi xướng"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Kỹ năng Khởi xướng"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Kỹ năng khởi xướng</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -266,7 +266,7 @@
 								<span class="icon" style="padding-left: ${tcPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng tổ chức"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Kỹ năng tổ chức"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Kỹ năng tồ chức</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
@@ -290,7 +290,7 @@
 								<span class="icon" style="padding-left: ${gqvdPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(row["Skill Scores - Kỹ năng Giải quyết vấn đề"])}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Kỹ năng Giải quyết vấn đề"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Kỹ năng giải quyết vấn đề</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
