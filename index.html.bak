@@ -109,7 +109,7 @@
 						<div style="padding-bottom:20px">
 							<div style="height: 15px;" >
 								<span class="icon" style="padding-left: ${tdpbPadding.expectedPadding}px; ">
-									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Tư duy phản biện (Critical Thinking)"])}</span>
+									<span style="font-size:15px;">${Math.round(row["Self-Assessment - Tư duy phản biện ( Critical Thinking)"])}</span>
 									<br>
 									<span style="font-size:14px;">&#11044;</span>
 								</span>
@@ -121,7 +121,7 @@
 								<span class="icon" style="padding-left: ${tdpbPadding.scorePadding}px; padding-top:5px">
 									<span style="font-size:20px;">&#9632;</span>
 									<br>
-									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Tư duy phản biện (Critical Thinking)"].replace('%','')))}</span>
+									<span style="font-size:15px;">${Math.round(parseInt(row["Skill Scores(%) - Tư duy phản biện ( Critical Thinking)"].replace('%','')))}</span>
 								</span>
 								<div class="skillText">Tư duy phản biện</div>
 								<div style="background-color: red; margin-top: 5px;"></div>
